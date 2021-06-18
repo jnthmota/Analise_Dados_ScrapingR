@@ -112,3 +112,33 @@ datNorm$V1 = scale(datNorm$V1, center = TRUE, scale = TRUE) #normalização z-scor
 summary(datNorm$V1)
 
 
+
+#Feature selection
+#Correlação
+cor(dados_completos[,1:8])
+
+
+#RFE PAcote Caret
+control <- rfeControl(functions=rfFuncs, method="cv", number=10)
+results <- rfe(dados_completos[,2:8], dados_completos[,1], sizes=c(1:8), rfeControl=control)
+predictors(results)
+
+
+#mRMR
+dd <- mRMR.data(data = dados_completos[,-c(9)])
+fs <- mRMR.classic(data = dd, target_indices = c(1), feature_count = 5)
+solutions(fs)
+
+
+
+#MMPC Pacote MXM
+target = 1
+PC=MMPC(dados_completos[,target], dados_completos[,-c(target,9)], max_k = 3, 
+        threshold = 0.05, test = "auto", ini = NULL, 
+        wei = NULL, user_test = NULL, hash = FALSE, 
+        hashObject = NULL, 
+        ncores = 3, backward = TRUE)
+print(PC@selectedVarsOrder)
+
+
+
