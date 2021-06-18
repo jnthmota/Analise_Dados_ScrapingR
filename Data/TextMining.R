@@ -84,4 +84,26 @@ dat1[which(dat1$V1 > ls),]$V1 = ls
 boxplot(dat1[,1])
 summary(dat1$V1)
 
+#Discretização
+#Não supervisionada
+hist(dat1$V1, breaks = 20, main = "Data")
+table(discretize(dat1$V1, k = 3)) #Discretização. Pacote arules
+hist(dat1$V1, breaks = 20, main = "Frequência igual")
+abline(v = discretize(dat1$V1, breaks = 3, 
+                      onlycuts = TRUE), col = "red")
+
+#Intervalo igual
+table(discretize(dat1$V1, method = "interval", breaks = 3))
+hist(dat1$V1, breaks = 20, main = "Intervalo igual")
+abline(v = discretize(dat1$V1, method = "interval", breaks = 3, 
+                      onlycuts = TRUE), col = "red")
+
+#Supervisionada
+table(discretize(dat1$V1, method = "fixed", breaks = c(9, 18, 23, 35, 47), 
+                 labels = c("Bebe Muito","Alto Consumo","Normal","Econômico")))
+hist(dat1$V1, breaks = 20, main = "Fixed")
+abline(v = discretize(dat1$V1, method = "fixed", breaks = c(9, 18, 23, 35, 47),
+                      onlycuts = TRUE), col = "red")
+
+
 
