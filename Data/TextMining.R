@@ -1,4 +1,4 @@
-#PreparaÃ§Ã£o de Dados (Dados Ausentes, Outliers, DiscretizaÃ§Ã£o, NormalizaÃ§Ã£o e SeleÃ§Ã£o de Atributos)
+#Preparação de Dados (Dados Ausentes, Outliers, Discretização, Normalização e Seleção de Atributos)
 library(dplyr)
 library(skimr)
 library(funModeling)
@@ -26,8 +26,8 @@ df_status(dat1) #pode ser um complemento da Summary, pacote funModeling
 describe(dat1)
 describe(dat1$V1)
 
-freq(dat1)   # gerando grÃ¡ficos para variÃ¡veis categÃ³ricas, pacote funModeling
-plot_num(dat1) # gerando grÃ¡ficos para variÃ¡veis numÃ©ricas, pacote funModeling
+freq(dat1)   # gerando gráficos para variáveis categóricas, pacote funModeling
+plot_num(dat1) # gerando gráficos para variáveis numéricas, pacote funModeling
 
 
 #Analisando dados Ausentes
