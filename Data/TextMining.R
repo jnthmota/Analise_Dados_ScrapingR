@@ -56,5 +56,32 @@ colSums(is.na(dados_completos))
 dim(dat1)
 dim(dados_completos)
 
+#Identificando outliers
+boxplot(dat1[,-c(9)]) #Boxplot com atributos numericos
+boxplot(dat1[,-c(9)], plot=FALSE)$out
+outliers <- boxplot(dat1$V4, plot=FALSE)$out
+
+IQR(dat1$V1, na.rm = TRUE) #identifica interquartil
+
+temp = summary(dat1$V1)
+li = temp[2] - 1.5*IQR(dat1$V1, na.rm = TRUE) #Calcula limite inferior
+ls = temp[5] + 1.5*IQR(dat1$V1, na.rm = TRUE)  #Calcula limite superior
+li
+ls
+boxplot(dat1[,1])
+dat1[which(dat1$V1 > ls),]
+
+#Tratando outliers
+
+#Remover outiler
+
+dat1 = dat1[-which(dat1$V1 > ls),]
+boxplot(dat1[,1])
+
+#Atualizar com o limite de Tukey
+summary(dat1$V1)
+dat1[which(dat1$V1 > ls),]$V1 = ls
+boxplot(dat1[,1])
+summary(dat1$V1)
 
 
