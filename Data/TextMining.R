@@ -105,5 +105,10 @@ hist(dat1$V1, breaks = 20, main = "Fixed")
 abline(v = discretize(dat1$V1, method = "fixed", breaks = c(9, 18, 23, 35, 47),
                       onlycuts = TRUE), col = "red")
 
+#Normalização de dados.
+summary(dat1$V1)
+datNorm <- dat1
+datNorm$V1 = scale(datNorm$V1, center = TRUE, scale = TRUE) #normalização z-score
+summary(datNorm$V1)
 
 
