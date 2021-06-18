@@ -111,8 +111,6 @@ datNorm <- dat1
 datNorm$V1 = scale(datNorm$V1, center = TRUE, scale = TRUE) #normalização z-score
 summary(datNorm$V1)
 
-
-
 #Feature selection
 #Correlação
 cor(dados_completos[,1:8])
@@ -128,8 +126,6 @@ predictors(results)
 dd <- mRMR.data(data = dados_completos[,-c(9)])
 fs <- mRMR.classic(data = dd, target_indices = c(1), feature_count = 5)
 solutions(fs)
-
-
 
 #MMPC Pacote MXM
 target = 1
